@@ -110,10 +110,35 @@ const build = (id) => {
         backgroundColor:`#${part.colour}`,
         width: '100% !important',
         minWidth: 'initial !important',
-        height:'1px',
-        lineHeight:'1px',
-        fontSize:'1px'
       })
+      if(!Row.main){
+        Helpers.setStyles(div, {
+          height:'1px',
+          lineHeight:'1px',
+          fontSize:'1px'
+        })
+      }
+      if(Row.main && i === arr.length - 1){
+        const inner_content = Helpers.createAndPopulate('table', null, {
+          cellspacing:0,
+          cellpadding:0,
+          border: 0,
+          align: 'center',
+          width: "100%",
+          bgcolor:"#ffffff"
+        },{
+          width: '100%',
+          backgroundColor: '#ffffff',
+          margin: '0 auto'
+        })
+        div.appendChild(inner_content)
+        const inner_tbody = Helpers.createElement('tbody')
+        inner_content.appendChild(inner_tbody)
+        const inner_tr = Helpers.createElement('tr')
+        inner_tbody.appendChild(inner_tr)
+        const inner_td = Helpers.createAndPopulate('td', 'HERE WILL GO ALL OF OUR CONTENT !!')
+        inner_tr.appendChild(inner_td)
+      }
       if (i !== arr.length - 1){
         Helpers.setStyles(div, {
           paddingLeft: `${part.incidence}px`,
